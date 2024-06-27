@@ -1,4 +1,5 @@
 import AddTransaction from "@/components/AddTransaction";
+import Balance from "@/components/Balance";
 import Guest from "@/components/Guest";
 import { checkUser } from "@/lib/check-user";
 
@@ -14,6 +15,7 @@ export default async function Home() {
       <h1 className="text-xl">
         Welcome, <span className="font-bold">{user.name}</span>
       </h1>
+      <Balance></Balance>
       <AddTransaction></AddTransaction>
     </div>
   );
