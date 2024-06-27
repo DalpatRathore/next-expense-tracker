@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import Header from "@/components/Header";
 
 const robot = Roboto({ weight: "400", subsets: ["latin"] });
 
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={robot.className}>{children}</body>
+        <body className={robot.className}>
+          <Header></Header>
+          <main className="h-[90%]">{children}</main>
+        </body>
       </html>
     </ClerkProvider>
   );
