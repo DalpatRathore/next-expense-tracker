@@ -5,6 +5,9 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const robot = Roboto({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +26,7 @@ export default function RootLayout({
         <body className={robot.className}>
           <Header></Header>
           <main className="h-[90%]">{children}</main>
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>

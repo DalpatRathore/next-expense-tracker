@@ -15,9 +15,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { addTransaction } from "@/actions/add-transaction";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
-  text: z.string().nonempty("Text is required"),
+  text: z
+    .string({
+      required_error: "Please provide amount text label",
+    })
+    .min(2, {
+      message: "Text label must be of minimum 2 characters",
+    }),
   amount: z
     .number({
       required_error: "Amount is required",
@@ -43,8 +50,10 @@ const AddTransaction = () => {
     const { data, error } = await addTransaction(formData);
 
     if (error) {
+      toast.error(error);
       console.log(error);
     } else {
+      toast.success("Transaction added successfully!");
       console.log(data);
     }
   };
