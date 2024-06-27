@@ -11,7 +11,9 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col items-center justify-start max-w-7xl mx-auto p-4 space-y-8 h-full">
-      <h1>Welcome, {user.name}</h1>
+      <h1 className="text-xl">
+        Welcome, <span className="font-bold">{user.name}</span>
+      </h1>
       <AddTransaction></AddTransaction>
     </div>
   );

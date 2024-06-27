@@ -1,6 +1,8 @@
 "use server";
 
+import { db } from "@/config/db";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 interface TransactionData {
   text: string;
@@ -28,10 +30,23 @@ if(!userId){
 }
 // console.log(userId)
 
-  const transactionData: TransactionData = {
-    text,
-    amount,
-  };
+  try {
+    const transactionData: TransactionData = await db.transaction.create({
+      data:{  
+          text,
+          amount,
+          userId
+      }
+    });
 
-  return { data: transactionData };
+    revalidatePath("/")
+  
+    return { data: transactionData };
+  } catch (error) {
+
+    return{
+        error:"Transaction not added"
+    }
+    
+  }
 }

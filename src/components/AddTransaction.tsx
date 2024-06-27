@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { addTransaction } from "@/actions/add-transaction";
 import { toast } from "react-toastify";
+import { ArrowLeftRight, DollarSign, Loader2, Tag } from "lucide-react";
 
 const formSchema = z.object({
   text: z
@@ -38,7 +39,13 @@ const formSchema = z.object({
 const AddTransaction = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      text: "",
+      amount: 0,
+    },
   });
+
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // ✅ This will be type-safe and validated.
@@ -53,14 +60,14 @@ const AddTransaction = () => {
       toast.error(error);
       console.log(error);
     } else {
+      form.reset();
       toast.success("Transaction added successfully!");
-      console.log(data);
     }
   };
 
   return (
     <div className="w-full max-w-xl mx-auto px-5">
-      <h2>Add Transactions</h2>
+      <h2 className="text-xl mb-5">Add Transaction</h2>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -69,12 +76,14 @@ const AddTransaction = () => {
             name="text"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Text</FormLabel>
+                <FormLabel className="flex items-center">
+                  <Tag className="w-4 h-4"></Tag>Text
+                </FormLabel>
                 <FormControl>
                   <Input type="text" placeholder="Enter text" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Description of the transaction.
+                  Text label of the transaction, e.g. Paycheck
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -85,7 +94,10 @@ const AddTransaction = () => {
             name="amount"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Amount</FormLabel>
+                <FormLabel className="flex items-center">
+                  <DollarSign className="w-4 h-4"></DollarSign>
+                  Amount
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -102,7 +114,21 @@ const AddTransaction = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Add Transaction</Button>
+          <div className="flex items-center justify-center">
+            <Button type="submit" size={"lg"} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-5 h-5  animate-spin mr-2"></Loader2>
+                  Adding...
+                </>
+              ) : (
+                <>
+                  Add Transaction
+                  <ArrowLeftRight className="w-5 h-5 ml-2"></ArrowLeftRight>
+                </>
+              )}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
