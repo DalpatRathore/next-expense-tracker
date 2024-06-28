@@ -53,6 +53,7 @@ const formSchema = z.object({
 });
 
 const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactionData, setTransactionData] = useState({
     text: "",
     amount: 0,
@@ -75,15 +76,15 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       amount: transactionData.amount,
     },
   });
-
-  const { isSubmitting } = form.formState;
-
   useEffect(() => {
-    form.reset({
-      text: transactionData.text,
-      amount: transactionData.amount,
-    });
-  }, [transactionData, form]);
+    if (isModalOpen) {
+      form.reset({
+        text: transactionData.text,
+        amount: transactionData.amount,
+      });
+    }
+  }, [transactionData, form, isModalOpen]);
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // ✅ This will be type-safe and validated.
@@ -94,14 +95,16 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
     };
     // console.log(formData);
     const { data, error } = await editTransaction(formData);
+    // console.log(data);
 
-    if (error) {
+    if (data) {
+      form.reset();
+      setTransactionData(data); // Update the local state
+      setIsModalOpen(false); // Close the modal
+      toast.success("Transaction updated successfully!");
+    } else {
       toast.error(error);
       console.log(error);
-    } else {
-      form.reset();
-      window.location.reload();
-      toast.success("Transaction added successfully!");
     }
   };
 
@@ -131,7 +134,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
         <div className="flex items-center gap-x-5">
           <p className="font-bold">{formatCurrency(transaction.amount)}</p>
 
-          <Dialog>
+          <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
             <DialogTrigger asChild>
               <Button variant={"outline"} size={"icon"}>
                 <Edit className="w-4 h-4 text-green-700"></Edit>

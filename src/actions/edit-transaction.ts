@@ -47,7 +47,6 @@ export async function editTransaction(data: TransactionData): Promise<Transactio
   
     return { data: transactionData };
   } catch (error) {
-
     return{
         error:"Transaction not added"
     }
