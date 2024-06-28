@@ -3,6 +3,7 @@ import Balance from "@/components/Balance";
 import IncomeExpense from "@/components/IncomeExpense";
 import Guest from "@/components/Guest";
 import { checkUser } from "@/lib/check-user";
+import TransactionList from "@/components/transactions/TransactionList";
 
 export default async function Home() {
   const user = await checkUser();
@@ -17,12 +18,13 @@ export default async function Home() {
         Welcome, <span className="font-bold">{user.name}</span>
       </h1>
       <div className="flex flex-col lg:flex-row w-full gap-5 ">
-        <div className="flex flex-col w-full items-center justify-start gap-y-5">
+        <div className="flex flex-col w-full items-center justify-center gap-y-5 border p-5 rounded-lg">
           <Balance></Balance>
           <IncomeExpense></IncomeExpense>
         </div>
         <AddTransaction></AddTransaction>
       </div>
+      <TransactionList></TransactionList>
     </div>
   );
 }
