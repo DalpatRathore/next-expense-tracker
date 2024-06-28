@@ -1,4 +1,5 @@
 import { getUserBalance } from "@/actions/get-user-balance";
+
 import React from "react";
 import {
   Card,
@@ -8,12 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { DollarSign } from "lucide-react";
-
+import { formatCurrency } from "@/lib/formatters";
 const Balance = async () => {
   const { balance } = await getUserBalance();
   return (
-    <Card className="w-full max-w-lg mx-auto">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="text-center">
         <CardTitle className="uppercase">Your Balance</CardTitle>
         <CardDescription>
@@ -21,8 +21,7 @@ const Balance = async () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex items-center justify-center">
-        <DollarSign className="w-7 h-7"></DollarSign>
-        <p className="text-2xl font-bold">{balance ?? 0}</p>
+        <p className="text-2xl font-bold">{formatCurrency(balance ?? 0)}</p>
       </CardContent>
       <CardFooter></CardFooter>
     </Card>
