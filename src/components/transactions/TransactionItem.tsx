@@ -124,7 +124,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
     <li
       key={transaction.id}
       className={cn(
-        "w-full flex items-center justify-center gap-5 border  rounded-md mb-5 p-3 border-l-8 hover:bg-sky-100",
+        "w-full flex items-center justify-center gap-5 border  rounded-md mb-5 p-3 border-l-8 hover:bg-sky-100 dark:hover:bg-gray-900",
         transaction.amount > 0 ? "border-l-green-800" : "border-l-rose-800"
       )}
     >
