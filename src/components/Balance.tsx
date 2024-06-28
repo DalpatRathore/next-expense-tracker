@@ -16,12 +16,12 @@ const Balance = async () => {
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="text-center">
         <CardTitle className="uppercase">Your Balance</CardTitle>
-        <CardDescription>
-          Lorem, ipsum. lorem ipsum dolor sit amet.
-        </CardDescription>
+        <CardDescription>lorem ipsum dolor sit amet.</CardDescription>
       </CardHeader>
       <CardContent className="flex items-center justify-center">
-        <p className="text-2xl font-bold">{formatCurrency(balance ?? 0)}</p>
+        <p className="text-2xl font-bold text-sky-700">
+          {formatCurrency(balance ?? 0)}
+        </p>
       </CardContent>
       <CardFooter></CardFooter>
     </Card>
