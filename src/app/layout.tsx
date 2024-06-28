@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const robot = Roboto({ weight: "400", subsets: ["latin"] });
 
@@ -25,10 +26,17 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={robot.className}>
-          <Header></Header>
-          <main>{children}</main>
-          <Footer></Footer>
-          <ToastContainer />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header></Header>
+            <main>{children}</main>
+            <Footer></Footer>
+            <ToastContainer />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { checkUser } from "@/lib/check-user";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = async () => {
   // console.log(user);
@@ -26,25 +27,27 @@ const Header = async () => {
           </h1>
         </Link>
       </div>
-      <nav>
-        <div className="">
-          <ClerkLoading>
-            <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
-          </ClerkLoading>
-          <ClerkLoaded>
-            <SignedIn>
+      <nav className="flex items-center justify-center gap-x-2">
+        <ClerkLoading>
+          <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
+        </ClerkLoading>
+        <ClerkLoaded>
+          <SignedIn>
+            <Button size={"icon"}>
               <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <Button>
-                  <LogIn className="w-4 h-4 mr-1"></LogIn>
-                  Login
-                </Button>
-              </SignInButton>
-            </SignedOut>
-          </ClerkLoaded>
-        </div>
+            </Button>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button>
+                <LogIn className="w-4 h-4 mr-1"></LogIn>
+                Login
+              </Button>
+            </SignInButton>
+          </SignedOut>
+        </ClerkLoaded>
+
+        <ThemeToggle></ThemeToggle>
       </nav>
     </header>
   );
