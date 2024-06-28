@@ -25,7 +25,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={robot.className}>
           <Header></Header>
-          <main className="h-[90%]">{children}</main>
+          <main>{children}</main>
           <ToastContainer />
         </body>
       </html>

@@ -66,7 +66,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto px-5">
+    <div className="w-full max-w-xl mx-auto p-5 border rounded-lg">
       <h2 className="text-xl mb-5">Add Transaction</h2>
 
       <Form {...form}>
