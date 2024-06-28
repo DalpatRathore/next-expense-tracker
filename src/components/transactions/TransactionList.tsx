@@ -1,6 +1,3 @@
-import { CheckIcon } from "@radix-ui/react-icons";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,16 +11,30 @@ import TransactionItem from "./TransactionItem";
 
 const TransactionList = async () => {
   const { transactions, error } = await getTransactions();
+  // console.log(transactions);
 
-  if (!transactions) {
-    return null;
+  if (!transactions || error) {
+    return (
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardHeader className="text-center">
+          <CardTitle>Transaction History</CardTitle>
+          <CardDescription>You have 0 transaction.</CardDescription>
+        </CardHeader>
+        <CardContent className="text-center">
+          <p>You have no transaction history</p>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Transaction History</CardTitle>
-        <CardDescription>You have 3 unread messages.</CardDescription>
+      <CardHeader className="text-center">
+        <CardTitle className="text-xl">Transaction History</CardTitle>
+        <CardDescription>
+          You have <span className="font-bold mx-1">{transactions.length}</span>
+          transaction(s).
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ul>
