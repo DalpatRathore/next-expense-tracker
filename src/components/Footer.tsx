@@ -1,4 +1,4 @@
-import { Code, Code2 } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { Button } from "./ui/button";
 
 const Footer = () => {

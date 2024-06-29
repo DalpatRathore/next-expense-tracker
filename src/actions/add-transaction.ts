@@ -28,7 +28,6 @@ const {userId} = auth();
 if(!userId){
     return {error:"User not found"}
 }
-// console.log(userId)
 
   try {
     const transactionData: TransactionData = await db.transaction.create({

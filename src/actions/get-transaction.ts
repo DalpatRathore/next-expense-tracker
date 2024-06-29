@@ -26,7 +26,6 @@ export async function getTransaction(transactionId:string):Promise<{
         if(!transaction){
             return {error:"No transaction"};
         }
-        // console.log(transaction)
 
         return {transaction}
         

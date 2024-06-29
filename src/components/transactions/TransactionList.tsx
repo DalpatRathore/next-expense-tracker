@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -11,7 +10,6 @@ import TransactionItem from "./TransactionItem";
 
 const TransactionList = async () => {
   const { transactions, error } = await getTransactions();
-  // console.log(transactions);
 
   if (!transactions || error) {
     return (

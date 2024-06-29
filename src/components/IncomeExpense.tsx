@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/formatters";
 import { getIncomeExpense } from "@/actions/get-income-expense";
+
 const IncomeExpense = async () => {
   const { income, expense } = await getIncomeExpense();
   return (

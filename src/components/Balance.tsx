@@ -1,6 +1,7 @@
-import { getUserBalance } from "@/actions/get-user-balance";
-
 import React from "react";
+
+import { getUserBalance } from "@/actions/get-user-balance";
+import { formatCurrency } from "@/lib/formatters";
 import {
   Card,
   CardContent,
@@ -9,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatCurrency } from "@/lib/formatters";
+
 const Balance = async () => {
   const { balance } = await getUserBalance();
   return (

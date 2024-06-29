@@ -1,15 +1,14 @@
-import { SignInButton } from "@clerk/nextjs";
 import React from "react";
+import { SignInButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import { LogIn } from "lucide-react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { LogIn } from "lucide-react";
 
 const Guest = () => {
   return (

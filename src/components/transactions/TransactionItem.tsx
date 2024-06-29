@@ -6,7 +6,7 @@ import { z } from "zod";
 import { formatCurrency } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 import { Transaction } from "@/types/transaction";
-import { Edit, Edit2, Trash2 } from "lucide-react";
+import { Edit, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { deleteTransaction } from "@/actions/delete-transaction";
@@ -93,14 +93,12 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       text: values.text,
       amount: values.amount,
     };
-    // console.log(formData);
     const { data, error } = await editTransaction(formData);
-    // console.log(data);
 
     if (data) {
       form.reset();
-      setTransactionData(data); // Update the local state
-      setIsModalOpen(false); // Close the modal
+      setTransactionData(data);
+      setIsModalOpen(false);
       toast.success("Transaction updated successfully!");
     } else {
       toast.error(error);

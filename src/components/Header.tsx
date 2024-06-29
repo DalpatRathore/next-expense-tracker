@@ -11,12 +11,9 @@ import { Loader2, LogIn } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { checkUser } from "@/lib/check-user";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = async () => {
-  // console.log(user);
-
   return (
     <header className="flex items-center justify-between max-w-7xl mx-auto p-4 border-b">
       <div className="logo">
@@ -46,7 +43,6 @@ const Header = async () => {
             </SignInButton>
           </SignedOut>
         </ClerkLoaded>
-
         <ThemeToggle></ThemeToggle>
       </nav>
     </header>

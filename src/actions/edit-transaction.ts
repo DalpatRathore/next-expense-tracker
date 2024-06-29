@@ -19,8 +19,8 @@ export async function editTransaction(data: TransactionData): Promise<Transactio
 
   const { text, amount,id } = data;
 
-  if (!text || text === "" || !amount) {
-    return { error: "Text or amount is missing" };
+  if (!text || text === "" || !amount || !id) {
+    return { error: "Text or amount or id is missing" };
   }
 
 //   Get logged in user
@@ -30,7 +30,6 @@ export async function editTransaction(data: TransactionData): Promise<Transactio
         return {error:"User not found"}
     }
 
-    // console.log(data)
   try {
     const transactionData: TransactionData = await db.transaction.update({
       where: {
